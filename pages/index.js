@@ -1,34 +1,31 @@
+import { ThemeProvider } from '@mui/material/styles';
+import { List, ListItem, ListItemText, Link } from '@mui/material/';
 import Image from 'next/image';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import Link from '@mui/material/Link';
+import { theme } from '../common/theme';
 
 const Home = ({ data }) => {
-  function ListItemLink(props) {
-    return <ListItem button component="a" {...props} />;
-  }
-
   return (
-    <div style={container}>
-      <div style={box}>
-        <Image src="/logo.svg" alt="Xstate Logo" width={180} height={180} />
-        <div style={content}>
-          <List component="nav" aria-label="Demo links">
-            <ListItem button>
-              <Link href="/counter" underline="none" color="textPrimary">
-                <ListItemText primary="The classic counter demo" />
-              </Link>
-            </ListItem>
-            <ListItem button>
-              <Link href="/stepper" underline="none" color="textPrimary">
-                <ListItemText primary="A demo of stepping through a sequence" />
-              </Link>
-            </ListItem>
-          </List>
+    <ThemeProvider theme={theme}>
+      <div style={container}>
+        <div style={box}>
+          <Image src="/logo.svg" alt="Xstate Logo" width={180} height={180} />
+          <div style={content}>
+            <List component="nav" aria-label="Demo links">
+              <ListItem button>
+                <Link href="/counter" underline="none" color="textPrimary">
+                  <ListItemText primary="The classic counter demo" />
+                </Link>
+              </ListItem>
+              <ListItem button>
+                <Link href="/stepper" underline="none" color="textPrimary">
+                  <ListItemText primary="A demo of stepping through a sequence" />
+                </Link>
+              </ListItem>
+            </List>
+          </div>
         </div>
       </div>
-    </div>
+    </ThemeProvider>
   );
 };
 
@@ -45,9 +42,9 @@ export const box = {
   justifyContent: 'center',
   alignItems: 'center',
   background: 'white',
-  minWidth: '50vw',
   borderRadius: '10px',
   filter: 'drop-shadow(1px 1px 1px black)',
+  padding: '20px',
 };
 
 const content = {

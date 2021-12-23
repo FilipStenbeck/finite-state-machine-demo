@@ -11,7 +11,7 @@ export const box = {
   justifyContent: 'center',
   alignItems: 'center',
   background: 'white',
-  minWidth: '25vw',
+  minWidth: '280px',
   minHeight: '25vh',
   borderRadius: '10px',
   filter: 'drop-shadow(1px 1px 1px black)',
@@ -29,5 +29,3 @@ export const breadcrum = {
   top: '20px',
   left: '20px',
 };
-
-export default () => '';

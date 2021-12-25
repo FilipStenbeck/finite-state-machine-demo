@@ -29,3 +29,7 @@ export const breadcrum = {
   top: '20px',
   left: '20px',
 };
+
+export const visualizeLink = {
+  marginTop: '20px',
+};

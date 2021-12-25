@@ -3,7 +3,7 @@ import { useMachine } from '@xstate/react';
 import { Button, Stack, Breadcrumbs, Link, ThemeProvider } from '@mui/material';
 
 import { theme } from '../../common/theme';
-import { container, box, content, breadcrum } from '../../common/styles';
+import { container, box, content, breadcrum, visualizeLink } from '../../common/styles';
 import { stepMachine } from '../../machines/step-machine';
 
 const Counter = ({ data }) => {
@@ -30,16 +30,23 @@ const Counter = ({ data }) => {
               <Button
                 onClick={() => setCurrentStep(stepMachine.transition(currentStep, 'PREV').value)}
                 variant="outlined"
+                disabled={currentStep === 'one' || currentStep === 'final'}
               >
                 Prev
               </Button>
               <Button
                 onClick={() => setCurrentStep(stepMachine.transition(currentStep, 'NEXT').value)}
                 variant="contained"
+                disabled={currentStep === 'final'}
               >
                 Next
               </Button>
             </Stack>
+            <div style={visualizeLink}>
+              <Link target="top" href="https://stately.ai/viz/5e278453-818e-4684-8dd0-fbdad9cae679">
+                Visualize
+              </Link>
+            </div>
           </div>
         </div>
       </div>

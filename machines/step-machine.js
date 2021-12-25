@@ -1,4 +1,4 @@
-import { createMachine, assign } from 'xstate';
+import { createMachine } from 'xstate';
 
 export const stepMachine = createMachine({
   id: 'step',
@@ -11,9 +11,9 @@ export const stepMachine = createMachine({
       on: { NEXT: 'three', PREV: 'one' },
     },
     three: {
-      on: { NEXT: 'four', PREV: 'two' },
+      on: { NEXT: 'final', PREV: 'two' },
     },
-    four: {
+    final: {
       type: 'final',
     },
   },

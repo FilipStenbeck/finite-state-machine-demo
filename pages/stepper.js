@@ -4,7 +4,7 @@ import { Button, Stack, Breadcrumbs, Link, ThemeProvider } from '@mui/material';
 
 import { theme } from '../common/theme';
 import { container, box, content, breadcrum, visualizeLink } from '../common/styles';
-import { stepMachine } from '../machines/step-machine';
+import { stepMachine, ONE, FINAL } from '../machines/step-machine';
 
 const Counter = ({ data }) => {
   const [state] = useMachine(stepMachine);
@@ -30,14 +30,14 @@ const Counter = ({ data }) => {
               <Button
                 onClick={() => setCurrentStep(stepMachine.transition(currentStep, 'PREV').value)}
                 variant="outlined"
-                disabled={currentStep === 'one' || currentStep === 'final'}
+                disabled={currentStep === ONE || currentStep === FINAL}
               >
                 Prev
               </Button>
               <Button
                 onClick={() => setCurrentStep(stepMachine.transition(currentStep, 'NEXT').value)}
                 variant="contained"
-                disabled={currentStep === 'final'}
+                disabled={currentStep === FINAL}
               >
                 Next
               </Button>

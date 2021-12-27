@@ -1,8 +1,8 @@
 import { ThemeProvider, Button, Stack, Breadcrumbs, Link } from '@mui/material';
 import { useMachine } from '@xstate/react';
-import { container, box, content, breadcrum } from '../../common/styles';
-import { counterMachine } from '../../machines/counter-machine';
-import { theme } from '../../common/theme';
+import { container, box, content, breadcrum, visualizeLink } from '../common/styles';
+import { counterMachine } from '../machines/counter-machine';
+import { theme } from '../common/theme';
 
 const Counter = ({ data }) => {
   const [state, send] = useMachine(counterMachine);
@@ -34,6 +34,11 @@ const Counter = ({ data }) => {
             <Button onClick={() => send('RESET')} variant="text">
               Reset counter
             </Button>
+            <div style={visualizeLink}>
+              <Link target="top" href="https://stately.ai/viz/061180ec-d24d-4c12-8901-b9d2eb80ee0c">
+                Visualize
+              </Link>
+            </div>
           </div>
         </div>
       </div>

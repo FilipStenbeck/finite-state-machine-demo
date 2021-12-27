@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { useMachine } from '@xstate/react';
 import { Button, Stack, Breadcrumbs, Link, ThemeProvider } from '@mui/material';
 
-import { theme } from '../../common/theme';
-import { container, box, content, breadcrum, visualizeLink } from '../../common/styles';
-import { stepMachine } from '../../machines/step-machine';
+import { theme } from '../common/theme';
+import { container, box, content, breadcrum, visualizeLink } from '../common/styles';
+import { stepMachine } from '../machines/step-machine';
 
 const Counter = ({ data }) => {
   const [state] = useMachine(stepMachine);

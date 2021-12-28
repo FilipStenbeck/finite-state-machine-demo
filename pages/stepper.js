@@ -8,7 +8,6 @@ import { stepMachine, ONE, FINAL } from '../machines/step-machine';
 
 const Counter = () => {
   const [state] = useMachine(stepMachine);
-  const [currentStep, setCurrentStep] = useState(state.value);
 
   return (
     <ThemeProvider theme={theme}>
@@ -25,19 +24,19 @@ const Counter = () => {
         </div>
         <div style={box}>
           <div style={content}>
-            <h2>{currentStep}</h2>
+            <h2>{state.value}</h2>
             <Stack spacing={2} direction="row">
               <Button
-                onClick={() => setCurrentStep(stepMachine.transition(currentStep, 'PREV').value)}
+                onClick={() => stepMachine.transition(state.value, 'PREV').value}
                 variant="outlined"
-                disabled={currentStep === ONE || currentStep === FINAL}
+                disabled={state.value === ONE || state.value === FINAL}
               >
                 Prev
               </Button>
               <Button
-                onClick={() => setCurrentStep(stepMachine.transition(currentStep, 'NEXT').value)}
+                onClick={() => stepMachine.transition(state.value, 'NEXT').value}
                 variant="contained"
-                disabled={currentStep === FINAL}
+                disabled={state.value === FINAL}
               >
                 Next
               </Button>

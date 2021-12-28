@@ -7,7 +7,7 @@ import { container, box, content, breadcrum, visualizeLink } from '../common/sty
 import { stepMachine, ONE, FINAL } from '../machines/step-machine';
 
 const Counter = () => {
-  const [state, send] = useMachine(stepMachine);
+  const [state] = useMachine(stepMachine);
   const [currentStep, setCurrentStep] = useState(state.value);
 
   return (
@@ -28,11 +28,7 @@ const Counter = () => {
             <h2>{currentStep}</h2>
             <Stack spacing={2} direction="row">
               <Button
-                onClick={() => {
-                  setCurrentStep(stepMachine.transition(currentStep, 'PREV').value);
-                  send(currentStep);
-                  console.log(state.context.clicks);
-                }}
+                onClick={() => setCurrentStep(stepMachine.transition(currentStep, 'PREV').value)}
                 variant="outlined"
                 disabled={currentStep === ONE || currentStep === FINAL}
               >

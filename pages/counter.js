@@ -4,7 +4,7 @@ import { container, box, content, breadcrum, visualizeLink } from '../common/sty
 import { counterMachine } from '../machines/counter-machine';
 import { theme } from '../common/theme';
 
-const Counter = ({ data }) => {
+const Counter = () => {
   const [state, send] = useMachine(counterMachine);
 
   return (

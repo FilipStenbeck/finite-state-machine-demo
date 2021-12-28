@@ -21,6 +21,11 @@ const Home = ({ data }) => {
                   <ListItemText primary="A demo of stepping through a sequence" />
                 </Link>
               </ListItem>
+              <ListItem button>
+                <Link href="/actions" underline="none" color="textPrimary">
+                  <ListItemText primary="A demo of triggering side effects" />
+                </Link>
+              </ListItem>
             </List>
           </div>
         </div>

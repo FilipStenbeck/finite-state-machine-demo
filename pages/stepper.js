@@ -6,7 +6,7 @@ import { theme } from '../common/theme';
 import { container, box, content, breadcrum, visualizeLink } from '../common/styles';
 import { stepMachine, ONE, FINAL } from '../machines/step-machine';
 
-const Counter = ({ data }) => {
+const Counter = () => {
   const [state] = useMachine(stepMachine);
   const [currentStep, setCurrentStep] = useState(state.value);
 

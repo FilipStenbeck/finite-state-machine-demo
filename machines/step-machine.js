@@ -1,24 +1,53 @@
-import { createMachine } from 'xstate';
+import { createMachine, assign } from 'xstate';
+import { init } from 'xstate/lib/actionTypes';
 
-export const ONE = 'one';
-export const TWO = 'two';
-export const THREE = 'three';
-export const FINAL = 'final';
+const ONE = 'one';
+const TWO = 'two';
+const THREE = 'three';
+const FINAL = 'final';
+
+const intitalState = {
+  isNextDisabled: false,
+  isPrevDisabled: true,
+};
+
+const initial = assign((context, state) => {
+  return intitalState;
+});
+
+const disableAll = assign((context, state) => {
+  return {
+    isNextDisabled: true,
+    isPrevDisabled: true,
+  };
+});
+
+const enableAll = assign((context, state) => {
+  return {
+    isNextDisabled: false,
+    isPrevDisabled: false,
+  };
+});
 
 export const stepMachine = createMachine({
   id: 'step',
   initial: ONE,
+  context: intitalState,
   states: {
     one: {
+      entry: [initial],
       on: { NEXT: TWO },
     },
     two: {
-      on: { NEXT: 'three', PREV: ONE },
+      entry: [enableAll],
+      on: { NEXT: THREE, PREV: ONE },
     },
     three: {
+      entry: [enableAll],
       on: { NEXT: FINAL, PREV: TWO },
     },
     final: {
+      entry: [disableAll],
       type: FINAL,
     },
   },

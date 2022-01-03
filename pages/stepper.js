@@ -4,7 +4,7 @@ import { Button, Stack, Breadcrumbs, Link, ThemeProvider } from '@mui/material';
 
 import { theme } from '../common/theme';
 import { container, box, content, breadcrum, visualizeLink } from '../common/styles';
-import { stepMachine, ONE, FINAL } from '../machines/step-machine';
+import { stepMachine } from '../machines/step-machine';
 
 const Counter = () => {
   const [state, send] = useMachine(stepMachine);
@@ -26,14 +26,10 @@ const Counter = () => {
           <div style={content}>
             <h2>{state.value}</h2>
             <Stack spacing={2} direction="row">
-              <Button
-                onClick={() => send('PREV')}
-                variant="outlined"
-                disabled={state.value === 'one' || state.value === 'final'}
-              >
+              <Button onClick={() => send('PREV')} variant="outlined" disabled={state.context.isPrevDisabled}>
                 Prev
               </Button>
-              <Button onClick={() => send('NEXT')} variant="contained" disabled={state.value === 'final'}>
+              <Button onClick={() => send('NEXT')} variant="contained" disabled={state.context.isNextDisabled}>
                 Next
               </Button>
             </Stack>

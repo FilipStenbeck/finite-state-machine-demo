@@ -7,8 +7,7 @@ import { container, box, content, breadcrum, visualizeLink } from '../common/sty
 import { stepMachine, ONE, FINAL } from '../machines/step-machine';
 
 const Counter = () => {
-  const [state] = useMachine(stepMachine);
-  const [currentStep, setCurrentStep] = useState(state.value);
+  const [state, send] = useMachine(stepMachine);
 
   return (
     <ThemeProvider theme={theme}>
@@ -25,20 +24,16 @@ const Counter = () => {
         </div>
         <div style={box}>
           <div style={content}>
-            <h2>{currentStep}</h2>
+            <h2>{state.value}</h2>
             <Stack spacing={2} direction="row">
               <Button
-                onClick={() => setCurrentStep(stepMachine.transition(currentStep, 'PREV').value)}
+                onClick={() => send('PREV')}
                 variant="outlined"
-                disabled={currentStep === ONE || currentStep === FINAL}
+                disabled={state.value === 'one' || state.value === 'final'}
               >
                 Prev
               </Button>
-              <Button
-                onClick={() => setCurrentStep(stepMachine.transition(currentStep, 'NEXT').value)}
-                variant="contained"
-                disabled={currentStep === FINAL}
-              >
+              <Button onClick={() => send('NEXT')} variant="contained" disabled={state.value === 'final'}>
                 Next
               </Button>
             </Stack>

@@ -7,13 +7,13 @@ export const counterMachine = createMachine({
     counting: {
       on: {
         INCREMENT: {
-          actions: assign({ count: (ctx) => ctx.count + 1 }),
+          actions: [assign({ count: (ctx) => ctx.count + 1 })],
         },
         DECREMENT: {
-          actions: assign({ count: (ctx) => ctx.count - 1 }),
+          actions: [assign({ count: (ctx) => ctx.count - 1 })],
         },
         RESET: {
-          actions: assign({ count: (ctx) => 0 }),
+          actions: [assign({ count: (ctx) => 0 })],
         },
       },
     },

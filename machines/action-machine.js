@@ -14,9 +14,7 @@ export const actionMachine = createMachine(
         },
       },
       active: {
-        // entry actions
         entry: ['sendTelemetry'],
-        // exit actions
         exit: ['deActivate'],
         on: {
           STOP: { target: 'inactive' },
